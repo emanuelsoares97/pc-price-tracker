@@ -6,36 +6,24 @@ import pandas as pd
 logger= get_logger(__name__)
 
 
-def guardar_analise_csv(df, nome_ficheiro):
+def guardar_csv(df, nome_ficheiro, subpasta="raw"):
     """
-    Guarda um DataFrame ou Series como CSV dentro da pasta `data/analisescsv`, garantindo que os ficheiros não sejam sobrescritos.
-
-    :param df: DataFrame ou Series do Pandas com os dados a guardar.
-    :param nome_ficheiro: Nome base do ficheiro CSV (sem extensão).
+    Guarda CSV numa subpasta de `data/` (por padrão, 'csv').
     """
     try:
-        if not isinstance(df, (pd.DataFrame, pd.Series)):
-            logger.error("Parâmetro 'df' inválido. Esperado DataFrame ou Series.")
-            raise ValueError("O parâmetro 'df' deve ser um pandas DataFrame ou Series.")
-        
-        # Obtém o caminho do diretório base do projeto
         caminho_projeto = os.path.dirname(os.path.abspath(__file__))
-        caminho_data = os.path.join(caminho_projeto, "..", "data/csv")
+        caminho_data = os.path.join(caminho_projeto, "..", "data", subpasta)
 
-        # Criar a pasta "csv" se não existir
         os.makedirs(caminho_data, exist_ok=True)
 
-        # Adicionar a data e hora ao nome do ficheiro (formato YYYY-MM-DD_HH-MM-SS)
-        data_atual = datetime.today().strftime('%Y-%m-%d_%H-%M-%S')
+        data_atual = datetime.today().strftime('%Y-%m-%d')
         nome_completo = os.path.join(caminho_data, f"{nome_ficheiro}_{data_atual}.csv")
 
-        # Se for uma Series, converte para DataFrame
         if isinstance(df, pd.Series):
             df = df.reset_index()
 
-        # Guarda o ficheiro CSV
-        df.to_csv(nome_completo, index=False)
+        df.to_csv(nome_completo, index=True)
         logger.info(f"Ficheiro guardado com sucesso: {nome_completo}")
-    
     except Exception as e:
-        logger.error(f"Erro ao tentar guardar o ficheiro: {e}")
+        logger.error(f"Erro ao guardar ficheiro: {e}")
+        raise f"Erro: {e}"
