@@ -1,0 +1,2 @@
+2025-03-25 19:18:42,766 | ERROR | models.classcomparador | Erro ao fazer merge ou comparar dados: unsupported operand type(s) for -: 'str' and 'str'
+2025-03-25 19:19:03,610 | ERROR | models.classcomparador | Erro ao fazer merge ou comparar dados: unsupported operand type(s) for -: 'str' and 'str'
