@@ -1,0 +1,40 @@
+2025-03-25 16:11:05,378 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: C:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data/csv\precos_computadores_2025-03-25_16-11-05.csv
+2025-03-25 16:21:25,223 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: C:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data/csv\precos_computadores_2025-03-25.csv
+2025-03-25 16:24:03,150 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: C:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data/csv\precos_computadores_2025-03-25.csv
+2025-03-25 19:18:42,766 | ERROR | models.classcomparador | Erro ao fazer merge ou comparar dados: unsupported operand type(s) for -: 'str' and 'str'
+2025-03-25 19:19:03,610 | ERROR | models.classcomparador | Erro ao fazer merge ou comparar dados: unsupported operand type(s) for -: 'str' and 'str'
+2025-03-25 19:19:34,058 | INFO | models.classcomparador | Dados limpos com sucesso para df_hoje
+2025-03-25 19:19:34,058 | INFO | models.classcomparador | Dados limpos com sucesso para df_ontem
+2025-03-25 19:19:34,131 | INFO | models.classcomparador | Comparação realizada com sucesso.
+2025-03-25 19:19:34,133 | INFO | models.classcomparador | Relatórios gerados com sucesso.
+2025-03-25 19:19:34,142 | INFO | models.classcomparador | Relatórios gerados com sucesso.
+2025-03-25 19:19:34,149 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: C:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\csv\comparacao_geral_2025-03-25.csv
+2025-03-25 19:19:34,152 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: C:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\csv\precos_aumentaram_2025-03-25.csv
+2025-03-25 19:19:34,156 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: C:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\csv\precos_diminuiram_2025-03-25.csv
+2025-03-25 19:23:05,053 | INFO | models.classcomparador | Dados limpos com sucesso para df_hoje
+2025-03-25 19:23:05,055 | INFO | models.classcomparador | Dados limpos com sucesso para df_ontem
+2025-03-25 19:23:05,061 | INFO | models.classcomparador | Comparação realizada com sucesso.
+2025-03-25 19:23:05,064 | INFO | models.classcomparador | Relatórios gerados com sucesso.
+2025-03-25 19:23:05,067 | INFO | models.classcomparador | Relatórios gerados com sucesso.
+2025-03-25 19:23:05,073 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: C:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\csv\comparacao_geral_2025-03-25.csv
+2025-03-25 19:23:05,077 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: C:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\csv\precos_aumentaram_2025-03-25.csv
+2025-03-25 19:23:05,082 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: C:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\csv\precos_diminuiram_2025-03-25.csv
+2025-03-25 19:23:05,082 | INFO | __main__ | Comparação realizada com sucesso!
+2025-03-25 19:29:25,278 | INFO | models.comparador | Dados limpos com sucesso para df_hoje
+2025-03-25 19:29:25,281 | INFO | models.comparador | Dados limpos com sucesso para df_ontem
+2025-03-25 19:29:25,286 | INFO | models.comparador | Comparação realizada com sucesso.
+2025-03-25 19:29:25,290 | INFO | models.comparador | Relatórios gerados com sucesso.
+2025-03-25 19:29:25,293 | INFO | models.comparador | Relatórios gerados com sucesso.
+2025-03-25 19:29:25,299 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: C:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\csv\comparacao_geral_2025-03-25.csv
+2025-03-25 19:29:25,303 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: C:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\csv\precos_aumentaram_2025-03-25.csv
+2025-03-25 19:29:25,307 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: C:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\csv\precos_diminuiram_2025-03-25.csv
+2025-03-25 19:29:25,307 | INFO | __main__ | Comparação realizada com sucesso!
+2025-03-25 19:58:54,760 | INFO | models.comparador | Dados limpos com sucesso para df_hoje
+2025-03-25 19:58:54,767 | INFO | models.comparador | Dados limpos com sucesso para df_ontem
+2025-03-25 19:58:54,777 | INFO | models.comparador | Comparação realizada com sucesso.
+2025-03-25 19:58:54,784 | INFO | models.comparador | Relatórios gerados com sucesso.
+2025-03-25 19:58:54,789 | INFO | models.comparador | Relatórios gerados com sucesso.
+2025-03-25 19:58:54,797 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: c:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\reports\comparacao_geral_2025-03-25.csv
+2025-03-25 19:58:54,802 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: c:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\reports\precos_aumentaram_2025-03-25.csv
+2025-03-25 19:58:54,870 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: c:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\reports\precos_diminuiram_2025-03-25.csv
+2025-03-25 19:58:54,870 | INFO | __main__ | Comparação realizada com sucesso!
