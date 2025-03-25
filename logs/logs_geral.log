@@ -38,3 +38,13 @@
 2025-03-25 19:58:54,802 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: c:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\reports\precos_aumentaram_2025-03-25.csv
 2025-03-25 19:58:54,870 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: c:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\reports\precos_diminuiram_2025-03-25.csv
 2025-03-25 19:58:54,870 | INFO | __main__ | Comparação realizada com sucesso!
+2025-03-25 20:09:45,362 | INFO | models.comparador | Dados limpos com sucesso para df_hoje
+2025-03-25 20:09:45,366 | INFO | models.comparador | Dados limpos com sucesso para df_ontem
+2025-03-25 20:09:45,374 | INFO | models.comparador | Comparação realizada com sucesso.
+2025-03-25 20:09:45,379 | INFO | models.comparador | Relatórios gerados com sucesso.
+2025-03-25 20:09:45,384 | INFO | models.comparador | Relatórios gerados com sucesso.
+2025-03-25 20:09:45,391 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: c:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\reports\comparacao_geral_2025-03-25.csv
+2025-03-25 20:09:45,395 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: c:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\reports\precos_aumentaram_2025-03-25.csv
+2025-03-25 20:09:45,464 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: c:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\reports\precos_diminuiram_2025-03-25.csv
+2025-03-25 20:09:45,464 | INFO | __main__ | Comparação realizada com sucesso!
+2025-03-25 20:13:11,279 | INFO | utils.guardarcsv | Ficheiro guardado com sucesso: c:\Users\tutas\Documents\Projetos GitHUB\pc-price-tracker\utils\..\data\raw\precos_computadores_2025-03-25.csv
