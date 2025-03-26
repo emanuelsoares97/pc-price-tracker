@@ -1,2 +1,5 @@
 2025-03-25 19:18:42,766 | ERROR | models.classcomparador | Erro ao fazer merge ou comparar dados: unsupported operand type(s) for -: 'str' and 'str'
 2025-03-25 19:19:03,610 | ERROR | models.classcomparador | Erro ao fazer merge ou comparar dados: unsupported operand type(s) for -: 'str' and 'str'
+2025-03-26 12:33:27,403 | ERROR | __main__ | Erro ao gerar relatorios: [WinError 3] O sistema não conseguiu localizar o caminho especificado: 'c:\\Users\\tutas\\Documents\\Projetos GitHUB\\pc-price-tracker\\utils\\..\\data/csv'
+2025-03-26 12:33:50,228 | ERROR | __main__ | Erro ao gerar relatorios: [WinError 3] O sistema não conseguiu localizar o caminho especificado: 'c:\\Users\\tutas\\Documents\\Projetos GitHUB\\pc-price-tracker\\utils\\..\\data/csv'
+2025-03-26 12:34:01,759 | ERROR | __main__ | Erro ao gerar relatorios: [WinError 3] O sistema não conseguiu localizar o caminho especificado: 'c:\\Users\\tutas\\Documents\\Projetos GitHUB\\pc-price-tracker\\utils\\..\\data/csv'
