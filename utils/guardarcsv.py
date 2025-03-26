@@ -22,7 +22,7 @@ def guardar_csv(df, nome_ficheiro, subpasta="raw"):
         if isinstance(df, pd.Series):
             df = df.reset_index()
 
-        df.to_csv(nome_completo, index=True)
+        df.to_csv(nome_completo, index=False)
         logger.info(f"Ficheiro guardado com sucesso: {nome_completo}")
     except Exception as e:
         logger.error(f"Erro ao guardar ficheiro: {e}")
