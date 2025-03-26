@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC Price Tracker - Visualizador</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../static/script/tabela.js"></script>
+  <script src="../static/script/grafico.js"></script>
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Comparador de Preços de Computadores</h1>
+
+    <div class="upload-section">
+      <input type="file" id="csvFile" accept=".csv">
+      <button onclick="carregarCSV()">Carregar CSV</button>
+    </div>
+
+    <div class="filtros">
+        <input type="text" id="filtroNome" placeholder="Pesquisar por nome..." oninput="filtrarTabela()">
+        <select id="filtroDiferenca" onchange="filtrarTabela()">
+          <option value="todos">Todos</option>
+          <option value="aumentaram">Aumentaram</option>
+          <option value="diminuiram">Diminuíram</option>
+        </select>
+      </div>
+      
+
+    <div id="tabelaContainer"></div>
+
+    <div class="grafico-container">
+        <h2>Variação de Preços</h2>
+        <canvas id="graficoVariação" height="120"></canvas>
+      </div>
+      
+  </div>
+
+</body>
+</html>
