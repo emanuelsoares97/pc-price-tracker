@@ -1,15 +1,15 @@
-Unnamed: 0,nome,preco_ontem,stock_ontem,data_ontem,preco_hoje,stock_hoje,data_hoje,diferença
-4,Computador King Mod Gamer-PC NZXT Ryzen 7 9800X3D 32GB DDR5 2TB RTX 5070 Ti WiFi W11,1099.9,Fazer Pré Reserva,2025-03-26,3099.9,Fazer Pré Reserva,2025-03-26,2000.0
-13,Computador King Mod Gamer-PC Ryzen 7 7800X3D 32GB DDR5 1TB RTX 5070 Ti WiFi W11,499.9,Esgotado,2025-03-26,2499.9,Esgotado,2025-03-26,2000.0
-0,Computador Asus ROG Strix G13CHR i5-14400F 32GB DDR5 2TB RTX 4060 8GB,299.9,Em stock,2025-03-26,1299.9,Em stock,2025-03-26,1000.0000000000001
-2,Computador King Mod Limited-PC Ryzen 5 5600 32GB DDR4 1TB RTX 4060 Ti W11,249.9,Em stock,2025-03-26,949.9,Em stock,2025-03-26,700.0
-9,Computador King Mod Gamer-PC AMD Ryzen 7 8700G 32GB DDR5 1TB 780M WiFi W11,349.9,Esgotado,2025-03-26,849.9,Esgotado,2025-03-26,500.0
-1,Computador King Mod Limited-PC Ryzen 7 9700X 32GB DDR5 1TB RTX 4070 Ti SUPER WiFi W11,2299.9,Em stock,2025-03-26,2299.9,Em stock,2025-03-26,0.0
-5,Computador King Mod Limited-PC NZXT Intel i5 14600KF 32GB DDR5 1TB RTX 4060 WiFi W11,1399.9,Fazer Pré Reserva,2025-03-26,1399.9,Fazer Pré Reserva,2025-03-26,0.0
-3,Computador King Mod Gamer-PC Powered by MSI - Mach 6 Ryzen 7 9800X3D 32GB DDR5 2TB RTX 5080 WiFi W11,2999.9,Em stock,2025-03-26,2999.9,Em stock,2025-03-26,0.0
-7,Computador King Mod Gamer-PC Powered by NZXT x MSI i5 14600KF 32GB DDR5 1TB RTX 4070 SUPER WiFi W11,1999.9,Esgotado,2025-03-26,1999.9,Esgotado,2025-03-26,0.0
-6,Computador King Mod Gamer-PC Powered by NZXT i5 13400F 32GB DDR4 1TB RTX 4060 Ti 16GB WiFi W11,1399.9,Esgotado,2025-03-26,1399.9,Esgotado,2025-03-26,0.0
-8,Computador King Mod Gamer-PC Powered by ASUS Ryzen 7 9800X3D 32GB DDR5 2TB RTX 5080 WiFi W11,4199.9,Esgotado,2025-03-26,4199.9,Esgotado,2025-03-26,0.0
-10,Computador King Mod Gamer-PC Powered by MSI - Mach 3.1 Ryzen 7 5700X3D 32GB DDR4 1TB RTX 5070 WiFi W11,1499.9,Esgotado,2025-03-26,1499.9,Esgotado,2025-03-26,0.0
-12,Computador King Mod Gamer-PC Ryzen 7 9800X3D 64GB DDR5 2TB RTX 5090 WiFi W11 V2,6999.9,Esgotado,2025-03-26,5999.9,Esgotado,2025-03-26,-1000.0
-11,Computador King Mod Limited-PC Ryzen 7 9800X3D 32GB DDR5 2TB RX 9070 XT WiFi W11,8599.9,Esgotado,2025-03-26,2599.9,Esgotado,2025-03-26,-6000.0
+nome,preco_ontem,stock_ontem,data_ontem,preco_hoje,stock_hoje,data_hoje,diferença
+Computador King Mod Gamer-PC NZXT Ryzen 7 9800X3D 32GB DDR5 2TB RTX 5070 Ti WiFi W11,1099.9,Fazer Pré Reserva,2025-03-26,3099.9,Fazer Pré Reserva,2025-03-26,2000.0
+Computador King Mod Gamer-PC Ryzen 7 7800X3D 32GB DDR5 1TB RTX 5070 Ti WiFi W11,499.9,Esgotado,2025-03-26,2499.9,Esgotado,2025-03-26,2000.0
+Computador Asus ROG Strix G13CHR i5-14400F 32GB DDR5 2TB RTX 4060 8GB,299.9,Em stock,2025-03-26,1299.9,Em stock,2025-03-26,1000.0000000000001
+Computador King Mod Limited-PC Ryzen 5 5600 32GB DDR4 1TB RTX 4060 Ti W11,249.9,Em stock,2025-03-26,949.9,Em stock,2025-03-26,700.0
+Computador King Mod Gamer-PC AMD Ryzen 7 8700G 32GB DDR5 1TB 780M WiFi W11,349.9,Esgotado,2025-03-26,849.9,Esgotado,2025-03-26,500.0
+Computador King Mod Limited-PC Ryzen 7 9700X 32GB DDR5 1TB RTX 4070 Ti SUPER WiFi W11,2299.9,Em stock,2025-03-26,2299.9,Em stock,2025-03-26,0.0
+Computador King Mod Limited-PC NZXT Intel i5 14600KF 32GB DDR5 1TB RTX 4060 WiFi W11,1399.9,Fazer Pré Reserva,2025-03-26,1399.9,Fazer Pré Reserva,2025-03-26,0.0
+Computador King Mod Gamer-PC Powered by MSI - Mach 6 Ryzen 7 9800X3D 32GB DDR5 2TB RTX 5080 WiFi W11,2999.9,Em stock,2025-03-26,2999.9,Em stock,2025-03-26,0.0
+Computador King Mod Gamer-PC Powered by NZXT x MSI i5 14600KF 32GB DDR5 1TB RTX 4070 SUPER WiFi W11,1999.9,Esgotado,2025-03-26,1999.9,Esgotado,2025-03-26,0.0
+Computador King Mod Gamer-PC Powered by NZXT i5 13400F 32GB DDR4 1TB RTX 4060 Ti 16GB WiFi W11,1399.9,Esgotado,2025-03-26,1399.9,Esgotado,2025-03-26,0.0
+Computador King Mod Gamer-PC Powered by ASUS Ryzen 7 9800X3D 32GB DDR5 2TB RTX 5080 WiFi W11,4199.9,Esgotado,2025-03-26,4199.9,Esgotado,2025-03-26,0.0
+Computador King Mod Gamer-PC Powered by MSI - Mach 3.1 Ryzen 7 5700X3D 32GB DDR4 1TB RTX 5070 WiFi W11,1499.9,Esgotado,2025-03-26,1499.9,Esgotado,2025-03-26,0.0
+Computador King Mod Gamer-PC Ryzen 7 9800X3D 64GB DDR5 2TB RTX 5090 WiFi W11 V2,6999.9,Esgotado,2025-03-26,5999.9,Esgotado,2025-03-26,-1000.0
+Computador King Mod Limited-PC Ryzen 7 9800X3D 32GB DDR5 2TB RX 9070 XT WiFi W11,8599.9,Esgotado,2025-03-26,2599.9,Esgotado,2025-03-26,-6000.0
