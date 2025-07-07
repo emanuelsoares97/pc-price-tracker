@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, send_from_directory
+from flask import Flask, render_template, jsonify, send_from_directory, render_template_string
 import traceback
 from scripts import scraper_main, comparador_main
 from utils.logger_util import get_logger
@@ -9,8 +9,17 @@ logger = get_logger(__name__)
 
 @app.route('/')
 def index():
-    """Renderiza a página principal com o frontend."""
+    """Renderiza a interface principal do visualizador."""
     return render_template('index.html')
+
+@app.route('/downloads')
+def downloads():
+    """Renderiza a página de downloads de arquivos."""
+    raw_dir = os.path.join('data', 'raw')
+    reports_dir = os.path.join('data', 'reports')
+    raw_files = sorted(os.listdir(raw_dir)) if os.path.exists(raw_dir) else []
+    reports_files = sorted(os.listdir(reports_dir)) if os.path.exists(reports_dir) else []
+    return render_template('downloads.html', raw_files=raw_files, reports_files=reports_files)
 
 @app.route('/scrap', methods=['POST'])
 def scrap():

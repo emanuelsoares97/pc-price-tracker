@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Downloads - PC Price Tracker</title>
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Downloads de Arquivos</h1>
+    <h2>Arquivos de Scraping (data/raw)</h2>
+    <ul>
+    {% for f in raw_files %}
+      <li><a href="/download/raw/{{f}}">{{f}}</a></li>
+    {% else %}
+      <li>Nenhum arquivo encontrado.</li>
+    {% endfor %}
+    </ul>
+    <h2>Relatórios Gerados (data/reports)</h2>
+    <ul>
+    {% for f in reports_files %}
+      <li><a href="/download/reports/{{f}}">{{f}}</a></li>
+    {% else %}
+      <li>Nenhum arquivo encontrado.</li>
+    {% endfor %}
+    </ul>
+    <hr>
+    <a href="/" class="button">Voltar para o Visualizador</a>
+  </div>
+</body>
+</html> 
