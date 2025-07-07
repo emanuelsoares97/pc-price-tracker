@@ -1,4 +1,4 @@
 build:
   packages:
-    - chromium-browser
-    - chromium-chromedriver 
+    - chromium
+    - chromium-chromedriver
