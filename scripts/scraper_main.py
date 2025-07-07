@@ -20,12 +20,15 @@ logger= get_logger(__name__)
 
 def main():
     from selenium.webdriver.chrome.options import Options
+
     chrome_options = Options()
-    chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--window-size=1920,1080')
-    chrome_options.binary_location = '/usr/bin/chromium-browser'
+
+    # Só define o caminho do Chromium se estiver rodando em Linux (Render)
+    if sys.platform.startswith('linux'):
+        chrome_options.binary_location = '/usr/bin/chromium-browser'
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     driver.get("https://www.globaldata.pt/computadores/desktop/computadores-gamer")

@@ -3,3 +3,34 @@
 2025-03-26 12:33:27,403 | ERROR | __main__ | Erro ao gerar relatorios: [WinError 3] O sistema não conseguiu localizar o caminho especificado: 'c:\\Users\\tutas\\Documents\\Projetos GitHUB\\pc-price-tracker\\utils\\..\\data/csv'
 2025-03-26 12:33:50,228 | ERROR | __main__ | Erro ao gerar relatorios: [WinError 3] O sistema não conseguiu localizar o caminho especificado: 'c:\\Users\\tutas\\Documents\\Projetos GitHUB\\pc-price-tracker\\utils\\..\\data/csv'
 2025-03-26 12:34:01,759 | ERROR | __main__ | Erro ao gerar relatorios: [WinError 3] O sistema não conseguiu localizar o caminho especificado: 'c:\\Users\\tutas\\Documents\\Projetos GitHUB\\pc-price-tracker\\utils\\..\\data/csv'
+2025-07-07 18:48:30,005 | ERROR | __main__ | Erro: Message: session not created
+from unknown error: no chrome binary at /usr/bin/chromium-browser
+Stacktrace:
+	GetHandleVerifier [0x0xfd3b03+62899]
+	GetHandleVerifier [0x0xfd3b44+62964]
+	(No symbol) [0x0xe010f3]
+	(No symbol) [0x0xe3289d]
+	(No symbol) [0x0xe303e9]
+	(No symbol) [0x0xe7a36a]
+	(No symbol) [0x0xe79c0a]
+	(No symbol) [0x0xe6e306]
+	(No symbol) [0x0xe3d670]
+	(No symbol) [0x0xe3e4e4]
+	GetHandleVerifier [0x0x1234793+2556483]
+	GetHandleVerifier [0x0x122fd02+2537394]
+	GetHandleVerifier [0x0xffa2fa+220586]
+	GetHandleVerifier [0x0xfeaae8+157080]
+	GetHandleVerifier [0x0xff141d+184013]
+	GetHandleVerifier [0x0xfdba68+95512]
+	GetHandleVerifier [0x0xfdbc10+95936]
+	GetHandleVerifier [0x0xfc6b5a+9738]
+	BaseThreadInitThunk [0x0x769d5d49+25]
+	RtlInitializeExceptionChain [0x0x776dd09b+107]
+	RtlGetAppContainerNamedObjectPath [0x0x776dd021+561]
+
+2025-07-07 18:50:28,842 | ERROR | scripts.comparador_main | Erro ao gerar relatorios: No columns to parse from file
+2025-07-07 18:50:28,842 | ERROR | __main__ | Erro: exceptions must derive from BaseException
+2025-07-07 18:51:09,188 | ERROR | scripts.comparador_main | Erro ao gerar relatorios: No columns to parse from file
+2025-07-07 18:51:09,189 | ERROR | __main__ | Erro: exceptions must derive from BaseException
+2025-07-07 18:52:37,359 | ERROR | scripts.comparador_main | Erro ao gerar relatorios: No columns to parse from file
+2025-07-07 18:52:37,359 | ERROR | __main__ | Erro: Erro: No columns to parse from file

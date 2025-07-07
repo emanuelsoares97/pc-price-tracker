@@ -46,7 +46,7 @@ def main():
     
     except Exception as e:
         logger.error(f"Erro ao gerar relatorios: {e}")
-        raise f"Erro: {e}"
+        raise Exception(f"Erro: {e}")
 
 if __name__ == "__main__":
     main()
