@@ -11,11 +11,15 @@
 </head>
 <body>
   <div class="container">
-    <h1>📊 Comparador de Preços de Computadores</h1>
+    <h1>Comparador de Preços de Computadores</h1>
 
     <div class="upload-section">
       <input type="file" id="csvFile" accept=".csv">
       <button onclick="carregarCSV()">Carregar CSV</button>
+    </div>
+
+    <div style="text-align:center; margin-bottom: 1rem;">
+      <button id="scrapBtn" onclick="rodarScraping()">Rodar Scraping</button>
     </div>
 
     <div class="filtros">
@@ -36,6 +40,26 @@
       </div>
       
   </div>
+
+  <script>
+    function rodarScraping() {
+      const btn = document.getElementById('scrapBtn');
+      btn.disabled = true;
+      btn.textContent = 'Processando...';
+      fetch('/scrap', {method: 'POST'})
+        .then(resp => resp.json())
+        .then(data => {
+          alert(data.mensagem);
+        })
+        .catch(() => {
+          alert('Erro ao rodar scraping.');
+        })
+        .finally(() => {
+          btn.disabled = false;
+          btn.textContent = 'Rodar Scraping';
+        });
+    }
+  </script>
 
 </body>
 </html>

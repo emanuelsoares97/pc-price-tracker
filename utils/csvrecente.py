@@ -2,7 +2,11 @@ import os
 from utils.pastascsv import caminho_csv_diario
 
 def encontrar_csvs_mais_recentes(pasta= caminho_csv_diario):
-    """Encontra os dois ficheiros CSV mais recentes na pasta especificada."""
+    """
+    Encontra os dois ficheiros CSV mais recentes na pasta especificada.
+    Os arquivos são ordenados por nome (espera-se que contenham datas no nome).
+    Retorna os caminhos completos dos dois arquivos mais recentes.
+    """
     ficheiros = [f for f in os.listdir(pasta) if f.endswith(".csv")]
     ficheiros.sort(reverse=True)
     if len(ficheiros) < 2:
