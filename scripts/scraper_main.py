@@ -15,6 +15,7 @@ from time import sleep
 from datetime import datetime
 import pandas as pd
 from utils.logger_util import get_logger
+import shutil
 
 logger= get_logger(__name__)
 
@@ -26,9 +27,14 @@ def main():
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--window-size=1920,1080')
 
-    # Só define o caminho do Chromium se estiver rodando em Linux (Render)
+    # Só ativa headless e define o binário do Chromium no Linux (Render)
     if sys.platform.startswith('linux'):
-        chrome_options.binary_location = '/usr/bin/chromium-browser'
+        chrome_options.add_argument('--headless')
+        chromium_path = shutil.which('chromium-browser') or shutil.which('chromium')
+        if chromium_path:
+            chrome_options.binary_location = chromium_path
+        else:
+            raise Exception('Chromium não encontrado no sistema!')
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     driver.get("https://www.globaldata.pt/computadores/desktop/computadores-gamer")
