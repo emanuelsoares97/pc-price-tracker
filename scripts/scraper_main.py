@@ -21,22 +21,25 @@ logger= get_logger(__name__)
 
 def main():
     from selenium.webdriver.chrome.options import Options
+    import shutil
 
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--window-size=1920,1080')
 
-    # Só ativa headless e define o binário do Chromium no Linux (Render)
     if sys.platform.startswith('linux'):
         chrome_options.add_argument('--headless')
-        chromium_path = shutil.which('chromium-browser') or shutil.which('chromium')
-        if chromium_path:
-            chrome_options.binary_location = chromium_path
-        else:
-            raise Exception('Chromium não encontrado no sistema!')
+        chrome_options.binary_location = shutil.which('google-chrome')
+        print('google-chrome path:', chrome_options.binary_location)
+        print('chromedriver path:', shutil.which('chromedriver'))
+        if not chrome_options.binary_location:
+            raise Exception('Google Chrome não encontrado no sistema!')
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    driver = webdriver.Chrome(
+        service=Service(shutil.which('chromedriver')),
+        options=chrome_options
+    )
     driver.get("https://www.globaldata.pt/computadores/desktop/computadores-gamer")
 
     sleep(2)
