@@ -20,8 +20,18 @@ import shutil
 logger= get_logger(__name__)
 
 def main():
-    from selenium.webdriver.chrome.options import Options
     import shutil
+    import os
+    print('which google-chrome:', shutil.which('google-chrome'))
+    print('which chrome:', shutil.which('chrome'))
+    print('which chromium:', shutil.which('chromium'))
+    print('which chromium-browser:', shutil.which('chromium-browser'))
+    print('exists /usr/bin/google-chrome:', os.path.exists('/usr/bin/google-chrome'))
+    print('exists /usr/bin/chrome:', os.path.exists('/usr/bin/chrome'))
+    print('exists /usr/bin/chromium:', os.path.exists('/usr/bin/chromium'))
+    print('exists /usr/bin/chromium-browser:', os.path.exists('/usr/bin/chromium-browser'))
+
+    from selenium.webdriver.chrome.options import Options
 
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')

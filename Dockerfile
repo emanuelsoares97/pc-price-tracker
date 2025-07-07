@@ -35,6 +35,11 @@ COPY . .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+RUN which google-chrome || true
+RUN google-chrome --version || true
+RUN which chromedriver || true
+RUN chromedriver --version || true
+
 EXPOSE 10000
 
 CMD ["gunicorn", "--bind", "0.0.0.0:10000", "app:app"]
