@@ -1,2 +1,0 @@
-build:
-  preBuildCommand: ./install_chromium.sh
