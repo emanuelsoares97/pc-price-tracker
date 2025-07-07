@@ -30,10 +30,12 @@ def main():
 
     if sys.platform.startswith('linux'):
         chrome_options.add_argument('--headless')
-        chrome_options.binary_location = shutil.which('google-chrome')
-        print('google-chrome path:', chrome_options.binary_location)
+        chrome_path = shutil.which('google-chrome')
+        print('google-chrome path:', chrome_path)
         print('chromedriver path:', shutil.which('chromedriver'))
-        if not chrome_options.binary_location:
+        if chrome_path:
+            chrome_options.binary_location = chrome_path
+        else:
             raise Exception('Google Chrome não encontrado no sistema!')
 
     driver = webdriver.Chrome(
