@@ -43,4 +43,4 @@ RUN chromedriver --version || true
 
 EXPOSE 10000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:10000", "app:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:10000", "-w", "1", "app:app"]
