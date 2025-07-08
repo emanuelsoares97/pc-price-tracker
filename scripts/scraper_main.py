@@ -35,14 +35,13 @@ def main():
     import tempfile  # Adicionado para criar diretório temporário
 
     chrome_options = Options()
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument('--window-size=1920,1080')
-
-    # Força o Chrome a usar um diretório temporário único para o perfil, evitando conflitos em cloud
-    import uuid
-    profile_dir = f"/tmp/chrome_profile_{uuid.uuid4()}"
-    chrome_options.add_argument(f'--user-data-dir={profile_dir}')
+    chrome_options.add_argument('--no-sandbox')  # Necessário para rodar em cloud
+    chrome_options.add_argument('--disable-dev-shm-usage')  # Evita problemas de memória em cloud
+    chrome_options.add_argument('--window-size=1920,1080')  # Tamanho padrão da janela
+    chrome_options.add_argument('--disable-gpu')  # Evita erros gráficos em cloud
+    chrome_options.add_argument('--single-process')  # Ajuda em ambientes restritos
+    chrome_options.add_argument('--remote-debugging-port=9222')  # Necessário para Chrome rodar em alguns clouds
+    # NÃO adicionar --headless nem --user-data-dir
 
     if sys.platform.startswith('linux'):
         #chrome_options.add_argument('--headless') retirada de forma a poder ver o processo
