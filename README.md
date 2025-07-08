@@ -95,6 +95,29 @@ pc-price-tracker/
 
 ---
 
+## Observação importante sobre o scraping
+
+- O scraping deste projeto funciona normalmente **no seu computador**, pois o Chrome abre de forma visível (não headless).
+- Em ambientes de deploy na nuvem (como Railway, Render, Heroku, etc.), o Chrome só roda em modo "headless" (sem interface gráfica), porque não existe tela nesses servidores.
+- Alguns sites bloqueiam acesso de bots ou browsers em modo headless, então pode ser que o scraping não funcione nesses ambientes cloud.
+- Se você quiser testar o scraping, recomendo rodar localmente no seu PC, onde o Chrome vai abrir normalmente e você consegue ver o processo funcionando.
+
+### Como testar o scraping localmente
+
+1. Instale as dependências do projeto:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Execute o script de scraping pelo terminal:
+   ```bash
+   python scripts/scraper_main.py
+   ```
+3. O Chrome vai abrir na sua tela e você verá o scraping acontecendo.
+
+Se tiver dúvidas ou problemas, veja os comentários no código ou abra uma issue!
+
+---
+
 ## Deploy com Docker (Render, Railway, etc.)
 
 O projeto já está pronto para ser executado em qualquer serviço que suporte Docker (ex: Render, Railway, Google Cloud Run, etc.).
@@ -103,9 +126,9 @@ O projeto já está pronto para ser executado em qualquer serviço que suporte D
 
 1. Certifique-se de que o ficheiro `Dockerfile` está na raiz do projeto.
 2. Faça commit e push de tudo para o GitHub.
-3. No Render (ou outro serviço), escolha “Deploy from Dockerfile”.
-4. O serviço irá construir a imagem, instalar todas as dependências e executar o app automaticamente.
-5. O scraping e a interface web funcionarão sem necessidade de configurações extra.
+3. No Railway (ou outro serviço que aceite Docker), escolha a opção de deploy pelo Dockerfile.
+4. O serviço vai construir a imagem, instalar as dependências e rodar o app automaticamente.
+5. A interface web vai funcionar normalmente. O scraping pode não funcionar em cloud se o site bloquear modo headless (veja a observação acima).
 
 ### Para executar localmente com Docker:
 

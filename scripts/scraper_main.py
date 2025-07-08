@@ -32,11 +32,18 @@ def main():
     print('exists /usr/bin/chromium-browser:', os.path.exists('/usr/bin/chromium-browser'))
 
     from selenium.webdriver.chrome.options import Options
+    import tempfile  # Adicionado para criar diretório temporário
 
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--window-size=1920,1080')
+
+    # O argumento --user-data-dir define onde o Chrome guarda o perfil temporário (cookies, cache, etc).
+    # Em ambientes cloud, se vários processos usarem o mesmo diretório, pode dar erro.
+    # Por isso, criamos sempre um diretório temporário único para cada execução.
+    user_data_dir = tempfile.mkdtemp()
+    chrome_options.add_argument(f'--user-data-dir={user_data_dir}')
 
     if sys.platform.startswith('linux'):
         #chrome_options.add_argument('--headless') retirada de forma a poder ver o processo
