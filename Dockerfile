@@ -19,8 +19,10 @@ RUN apt-get update && \
     rm ./google-chrome-stable_current_amd64.deb
 
 # Instala ChromeDriver universal (compatível com Chrome 115+)
-RUN wget -O /tmp/chromedriver.zip https://storage.googleapis.com/chrome-for-testing-public/LatestRelease/stable/linux64/chromedriver-linux64.zip \
+RUN set -ex \
+    && wget -O /tmp/chromedriver.zip https://storage.googleapis.com/chrome-for-testing-public/LatestRelease/stable/linux64/chromedriver-linux64.zip \
     && unzip /tmp/chromedriver.zip -d /tmp/ \
+    && ls -l /tmp/ \
     && mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver \
     && chmod +x /usr/local/bin/chromedriver \
     && rm -rf /tmp/chromedriver.zip /tmp/chromedriver-linux64
@@ -29,7 +31,7 @@ ENV PATH="/usr/bin/google-chrome:${PATH}"
 
 WORKDIR /app
 COPY . .
-
+git
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
