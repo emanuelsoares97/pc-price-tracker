@@ -38,7 +38,11 @@ def main():
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--window-size=1920,1080')
-    # Removido --user-data-dir para evitar erro de sessão em cloud
+
+    # Força o Chrome a usar um diretório temporário único para o perfil, evitando conflitos em cloud
+    import uuid
+    profile_dir = f"/tmp/chrome_profile_{uuid.uuid4()}"
+    chrome_options.add_argument(f'--user-data-dir={profile_dir}')
 
     if sys.platform.startswith('linux'):
         #chrome_options.add_argument('--headless') retirada de forma a poder ver o processo
