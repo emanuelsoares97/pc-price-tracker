@@ -38,12 +38,7 @@ def main():
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--window-size=1920,1080')
-
-    # O argumento --user-data-dir define onde o Chrome guarda o perfil temporário (cookies, cache, etc).
-    # Em ambientes cloud, se vários processos usarem o mesmo diretório, pode dar erro.
-    # Por isso, criamos sempre um diretório temporário único para cada execução.
-    user_data_dir = tempfile.mkdtemp()
-    chrome_options.add_argument(f'--user-data-dir={user_data_dir}')
+    # Removido --user-data-dir para evitar erro de sessão em cloud
 
     if sys.platform.startswith('linux'):
         #chrome_options.add_argument('--headless') retirada de forma a poder ver o processo
