@@ -22,6 +22,13 @@ logger= get_logger(__name__)
 def main():
     import shutil
     import os
+    import tempfile
+    import uuid
+
+    # Define variáveis de ambiente para garantir que o Chrome use /tmp
+    os.environ["XDG_CONFIG_HOME"] = "/tmp"
+    os.environ["HOME"] = "/tmp"
+
     print('which google-chrome:', shutil.which('google-chrome'))
     print('which chrome:', shutil.which('chrome'))
     print('which chromium:', shutil.which('chromium'))
@@ -32,7 +39,6 @@ def main():
     print('exists /usr/bin/chromium-browser:', os.path.exists('/usr/bin/chromium-browser'))
 
     from selenium.webdriver.chrome.options import Options
-    import tempfile  # Adicionado para criar diretório temporário
 
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')  # Necessário para rodar em cloud
@@ -42,6 +48,10 @@ def main():
     chrome_options.add_argument('--single-process')  # Ajuda em ambientes restritos
     chrome_options.add_argument('--remote-debugging-port=9222')  # Necessário para Chrome rodar em alguns clouds
     # NÃO adicionar --headless nem --user-data-dir
+
+    # Força o Chrome a usar um diretório temporário único para o perfil
+    profile_dir = tempfile.mkdtemp(prefix="chrome_profile_")
+    chrome_options.add_argument(f'--user-data-dir={profile_dir}')
 
     if sys.platform.startswith('linux'):
         #chrome_options.add_argument('--headless') retirada de forma a poder ver o processo
