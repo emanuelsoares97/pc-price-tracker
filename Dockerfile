@@ -18,14 +18,11 @@ RUN apt-get update && \
     apt-get install -y ./google-chrome-stable_current_amd64.deb || apt-get install -fy && \
     rm ./google-chrome-stable_current_amd64.deb
 
-# Instala ChromeDriver compatível
-RUN CHROME_VERSION=$(google-chrome --version | grep -oP '[0-9.]+' | head -1) && \
-    CHROMEDRIVER_VERSION=$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}) && \
-    wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip && \
-    unzip /tmp/chromedriver.zip -d /usr/local/bin/ && \
-    chmod +x /usr/local/bin/chromedriver && \
-    rm /tmp/chromedriver.zip && \
-    rm -rf /var/lib/apt/lists/*
+# Instala ChromeDriver universal (compatível com Chrome 115+)
+RUN wget -O /tmp/chromedriver.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/LatestRelease/chromedriver_linux64.zip \
+    && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
+    && chmod +x /usr/local/bin/chromedriver \
+    && rm /tmp/chromedriver.zip
 
 ENV PATH="/usr/bin/google-chrome:${PATH}"
 
