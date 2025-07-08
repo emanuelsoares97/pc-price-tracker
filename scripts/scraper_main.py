@@ -39,7 +39,7 @@ def main():
     chrome_options.add_argument('--window-size=1920,1080')
 
     if sys.platform.startswith('linux'):
-        chrome_options.add_argument('--headless')
+        #chrome_options.add_argument('--headless') retirada de forma a poder ver o processo
         chrome_path = shutil.which('google-chrome')
         print('google-chrome path:', chrome_path)
         print('chromedriver path:', shutil.which('chromedriver'))
