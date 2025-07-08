@@ -31,7 +31,7 @@ ENV PATH="/usr/bin/google-chrome:${PATH}"
 
 WORKDIR /app
 COPY . .
-git
+
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
