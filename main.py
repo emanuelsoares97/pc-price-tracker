@@ -1,3 +1,4 @@
+# este ficheiro serve para correr o scraping e a comparação tudo de uma vez
 from scripts import scraper_main, comparador_main
 from utils.logger_util import get_logger
 
@@ -13,4 +14,7 @@ def main():
     logger.info("Finalizado com sucesso!")
 
 if __name__ == "__main__":
-    main()
+    # aqui faço o scraping
+    scraper_main.main()
+    # aqui faço a comparação dos preços
+    comparador_main.main()

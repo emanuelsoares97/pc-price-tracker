@@ -26,16 +26,13 @@ file_handler_debug = logging.FileHandler(LOG_DEBUG, encoding="utf-8")
 file_handler_debug.setLevel(logging.DEBUG)  # Guarda DEBUG
 file_handler_debug.setFormatter(formatter)
 
-# Criar função para obter um logger específico
+# função para criar um logger simples
 def get_logger(nome):
-    """Cria e retorna um logger específico para uma classe/módulo."""
     logger = logging.getLogger(nome)
-    logger.setLevel(logging.DEBUG)  # Aceita todos os níveis de log
-
-    # Evitar duplicação de handlers
     if not logger.handlers:
-        logger.addHandler(file_handler_geral)
-        logger.addHandler(file_handler_erros)
-        logger.addHandler(file_handler_debug)
-
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+    logger.setLevel(logging.INFO)
     return logger

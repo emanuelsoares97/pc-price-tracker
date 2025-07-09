@@ -33,8 +33,14 @@ function carregarCSV() {
       const tr = tbody.insertRow();
 
       const indexDiff = headers.indexOf("diferença");
-      // Se houver possibilidade de vírgula como separador decimal, substituí-la por ponto
-      let diffValue = row[indexDiff].replace(",", ".");
+      // antes de usar .replace, verifico se existe valor
+      let diffValue = row[indexDiff];
+      if (diffValue !== undefined) {
+          diffValue = diffValue.replace(",", ".");
+      } else {
+          diffValue = ""; // se não houver valor, fica vazio
+          console.log("Coluna diff não encontrada nesta linha:", row);
+      }
       let diff = parseFloat(diffValue);
       
       if (!isNaN(diff)) {

@@ -1,5 +1,16 @@
 import os
 from utils.pastascsv import caminho_csv_diario
+from datetime import datetime
+
+# aqui ficam funções para encontrar o csv mais recente e o anterior
+
+# devolve o caminho do csv mais recente numa pasta
+def obter_csv_mais_recente(pasta):
+    ficheiros = [f for f in os.listdir(pasta) if f.endswith('.csv')]
+    if not ficheiros:
+        return None
+    ficheiros.sort(key=lambda x: os.path.getmtime(os.path.join(pasta, x)), reverse=True)
+    return os.path.join(pasta, ficheiros[0])
 
 def encontrar_csvs_mais_recentes(pasta= caminho_csv_diario):
     """

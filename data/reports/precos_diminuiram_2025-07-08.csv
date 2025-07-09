@@ -1,1 +1,1 @@
-nome,preco_ontem,stock_ontem,data_ontem,preco_hoje,stock_hoje,data_hoje,diferença
+nome,preco_hoje,stock_hoje,data_hoje,preco_ontem,stock_ontem,data_ontem
