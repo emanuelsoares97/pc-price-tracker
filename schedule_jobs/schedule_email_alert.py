@@ -47,11 +47,12 @@ def job():
             preco_hoje = row[data_hoje]
             preco_ontem = row[data_ontem]
             if pd.notna(preco_hoje) and pd.notna(preco_ontem):
-                diff = abs(preco_hoje - preco_ontem)
+                diff = preco_ontem - preco_hoje
                 if diff >= 300:
                     alertas.append((row['nome'], diff))
                 else:
                     logger.info(f'Nenhuma diferença significativa para {row["nome"]}: {diff:.2f}€')
+
 
         # Se achou algum alerta, envia um email único para todos
         if alertas:
@@ -122,4 +123,3 @@ if __name__ == '__main__':
         
         schedule.run_pending()
         time.sleep(60)
-
