@@ -28,13 +28,18 @@ file_handler_debug.setFormatter(formatter)
 
 # função para criar um logger simples
 def get_logger(nome):
-    """    Cria um logger com o nome especificado.
-    Se já existir, retorna o logger existente"""
+    """ Cria um logger com o nome especificado.
+        Se já existir, retorna o logger existente"""
     logger = logging.getLogger(nome)
     if not logger.handlers:
+        # Adiciona os handlers para arquivos
+        logger.addHandler(file_handler_geral)
+        logger.addHandler(file_handler_erros)
+        logger.addHandler(file_handler_debug)
+        # Também adiciona handler para console, opcional
         handler = logging.StreamHandler()
-        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-        handler.setFormatter(formatter)
+        formatter_console = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter_console)
         logger.addHandler(handler)
-    logger.setLevel(logging.INFO)
+    logger.setLevel(logging.DEBUG)  # Define nível para DEBUG para todos os logs
     return logger
