@@ -49,7 +49,10 @@ def scrap_nome():
         data = request.get_json()
         nome_pesquisa = data.get('nome', None)
         logger.info(f"iniciando scraping via frontend para nome: {nome_pesquisa}")
-        scraper_main.main(nome_pesquisa=nome_pesquisa)
+        resultado = scraper_main.main(nome_pesquisa=nome_pesquisa)
+        if resultado is False:
+            logger.info("Nenhum produto encontrado para o nome de pesquisa.")
+            return jsonify({'status': 'vazio', 'mensagem': f'Nenhum computador encontrado para o nome pesquisado: {nome_pesquisa}.'}), 200
         logger.info("finalizado com sucesso!")
         return jsonify({'status': 'ok', 'mensagem': f'Scraping concluído para {nome_pesquisa}!'}), 200
     except Exception as e:

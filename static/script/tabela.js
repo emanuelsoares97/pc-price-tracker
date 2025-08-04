@@ -1,3 +1,38 @@
+// Gera tabela de comparação multidias simples (nome + datas)
+function gerarTabelaComparacaoMultidias(dados) {
+    const tabela = document.getElementById('tabela-comparacao');
+    tabela.innerHTML = '';
+
+    if (!dados || dados.length === 0) {
+        tabela.innerHTML = '<tr><td>Nenhum dado disponível</td></tr>';
+        return;
+    }
+
+    // Cabeçalho dinâmico: nome + datas
+    const colunas = Object.keys(dados[0]).filter(col => col === 'nome' || /^\d{4}-\d{2}-\d{2}$/.test(col));
+    const thead = document.createElement('thead');
+    const trHead = document.createElement('tr');
+    colunas.forEach(col => {
+        const th = document.createElement('th');
+        th.textContent = col;
+        trHead.appendChild(th);
+    });
+    thead.appendChild(trHead);
+    tabela.appendChild(thead);
+
+    // Corpo da tabela
+    const tbody = document.createElement('tbody');
+    dados.forEach(linha => {
+        const tr = document.createElement('tr');
+        colunas.forEach(col => {
+            const td = document.createElement('td');
+            td.textContent = linha[col];
+            tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+    });
+    tabela.appendChild(tbody);
+}
 function carregarCSV() {
   const input = document.getElementById("csvFile");
   const file = input.files[0];
@@ -47,38 +82,47 @@ function carregarCSV() {
       const row = splitCSVLine(lines[i], delimiter);
       const tr = tbody.insertRow();
 
-      const indexDiff = headers.indexOf("diferença");
-      // antes de usar .replace, verifico se existe valor
-      let diffValue = row[indexDiff];
-      if (diffValue !== undefined) {
-          diffValue = diffValue.replace(",", ".");
-      } else {
-          diffValue = ""; // se não houver valor, fica vazio
-          console.log("Coluna diff não encontrada nesta linha:", row);
-      }
-      let diff = parseFloat(diffValue);
-      
-      if (!isNaN(diff)) {
-        if (diff > 0) {
-          tr.classList.add("aumentou");
-        } else if (diff < 0) {
-          tr.classList.add("diminuiu");
-        } else {
-          tr.classList.add("neutro");
+      // Destacar menor valor em verde e mostrar o dia
+      let menorValor = row[headers.indexOf("menor_preco")];
+      let menorValorNum = parseFloat(menorValor);
+      let diaMenor = "";
+      // Descobre o dia do menor valor
+      headers.forEach((h, idx) => {
+        if (h !== "nome" && h !== "menor_preco") {
+          let valorNum = parseFloat(row[idx]);
+          if (!isNaN(valorNum) && valorNum === menorValorNum) {
+            diaMenor = h;
+          }
         }
-      }
+      });
 
-      row.forEach(cell => {
+      row.forEach((cell, idx) => {
         const td = tr.insertCell();
-        td.textContent = cell;
+        // Se for a coluna menor_preco, mostra valor + dia
+        if (headers[idx] === "menor_preco") {
+          td.textContent = menorValor + (diaMenor ? ` (${diaMenor})` : "");
+        } else {
+          td.textContent = cell;
+        }
+        // Destaca o menor valor nas colunas de preço (exceto nome e menor_preco)
+        if (headers[idx] !== "nome" && headers[idx] !== "menor_preco") {
+          let valorNum = parseFloat(cell);
+          if (!isNaN(valorNum) && valorNum === menorValorNum) {
+            td.style.background = "#d4f7d4"; // verde claro
+            td.style.fontWeight = "bold";
+          }
+        }
       });
 
-      dados.push({
-        nome: row[headers.indexOf("nome")],
-        preco_hoje: parseFloat(row[headers.indexOf("preco_hoje")].replace(",", ".")),
-        preco_ontem: parseFloat(row[headers.indexOf("preco_ontem")].replace(",", ".")),
-        diferenca: diff
+      // Adiciona ao array dados para uso no gráfico se quiser
+      let obj = { nome: row[headers.indexOf("nome")], menor_preco: menorValorNum, dia_menor: diaMenor };
+      // Adiciona os preços por data
+      headers.forEach((h, idx) => {
+        if (h !== "nome" && h !== "menor_preco") {
+          obj[h] = row[idx];
+        }
       });
+      dados.push(obj);
     }
 
     const container = document.getElementById("tabelaContainer");

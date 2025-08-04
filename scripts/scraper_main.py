@@ -128,11 +128,25 @@ def main(nome_pesquisa=None):
     # crio o dataframe com os dados recolhidos
     df = pd.DataFrame(dados)
 
-    # guardo o csv com os preços
-    guardar_csv(df, "precos_computadores")
+    # Se não encontrou nenhum produto, retorna feedback e não salva
+    if df.empty:
+        logger.warning("Nenhum produto encontrado para o termo de pesquisa.")
+        # fecho o chrome
+        driver.quit()
+        return False
 
+    # guarda o csv na pasta correta
+    if nome_pesquisa:
+        nome_limpo = ''.join(c for c in nome_pesquisa if c.isalnum() or c in ('-', '_')).replace(' ', '_')
+        guardar_csv(df, f"precos_computadores_{nome_limpo}", subpasta="raw/individual")
+    else:
+        guardar_csv(df, "precos_computadores", subpasta="raw/geral")
+    
     # fecho o chrome
     driver.quit()
+    return True
+
+    
 
 # se correr este ficheiro diretamente, chama a função main
 if __name__ == "__main__":

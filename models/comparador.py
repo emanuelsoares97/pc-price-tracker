@@ -6,6 +6,7 @@ logger = get_logger(__name__)
 
 # classe para comparar preços entre dois dataframes
 class ComparadorPreco:
+    
     def __init__(self, df_hoje: pd.DataFrame, df_ontem: pd.DataFrame):
         # guardo os dataframes de hoje e de ontem
         self.df_hoje = df_hoje.copy()
@@ -21,71 +22,60 @@ class ComparadorPreco:
             if not required_cols.issubset(df.columns):
                 raise ValueError(f"O DataFrame '{nome}' deve conter as colunas: {required_cols}")
 
-    def _limpar_dados(self) -> None:
+
+    # ...existing code...
+    @staticmethod
+    def comparar_multidias(dfs, datas, nome_pesquisa=None):
         """
-        Limpa os dados de preço em ambos os DataFrames, convertendo para float.
+        Recebe lista de DataFrames (um por dia) e lista de datas.
+        Retorna DataFrame: cada linha um computador, cada coluna um preço por data, traço se não houver.
+        Se nome_pesquisa for passado, filtra só esse computador.
         """
-        try:
-            for df, label in [(self.df_hoje, "hoje"), (self.df_ontem, "ontem")]:
-                df["preco"] = (
-                    df["preco"]
-                    .str.replace("€", "", regex=False)
-                    .str.replace(",", ".", regex=False)
-                    .str.replace(" ", "", regex=False)
-                    .str.strip()
-                    .astype(float)
-                )
-                logger.info(f"Dados limpos com sucesso para df_{label}")
-        except Exception as e:
-            logger.error(f"Erro ao limpar dados: {e}")
-            raise
+        # Limpa preços e monta dict: {data: df}
+        dfs_dict = {}
+        for df, data in zip(dfs, datas):
+            df = df.copy()
+            df['preco'] = df['preco'].astype(str)
+            df['preco'] = df['preco'].str.replace('€','', regex=False)
+            df['preco'] = df['preco'].str.replace(r'\s','', regex=True)
+            df['preco'] = df['preco'].str.replace(',','.', regex=False)
+            df['preco'] = df['preco'].replace(['Esgotado','Indisponível','-',''], pd.NA)
+            df['preco'] = pd.to_numeric(df['preco'], errors='coerce')
+            dfs_dict[data] = df
 
-    def comparar(self) -> pd.DataFrame:
-        """
-        Faz a comparação dos preços e calcula a diferença.
+        # Monta lista de todos os nomes únicos
+        nomes = set()
+        for df in dfs_dict.values():
+            nomes.update(df['nome'].unique())
+        import unicodedata
+        def normalizar(texto):
+            return unicodedata.normalize('NFD', texto).encode('ascii', 'ignore').decode('utf-8').lower()
+        if nome_pesquisa:
+            termo = normalizar(nome_pesquisa)
+            nomes_filtrados = {n for n in nomes if termo in normalizar(n)}
+            if not nomes_filtrados:
+                raise ValueError(f"Nenhum computador encontrado com o termo '{nome_pesquisa}'.")
+            nomes = nomes_filtrados
 
-        Returns:
-            pd.DataFrame: DataFrame com colunas de comparação e diferença de preços.
-        """
-        try:
-            self._limpar_dados()
+        # Monta tabela: cada linha um computador, cada coluna um preço por data
+        relatorio = []
+        for nome in sorted(nomes):
+            linha = {'nome': nome}
+            for data in datas:
+                df = dfs_dict[data]
+                preco = df.loc[df['nome'] == nome, 'preco']
+                if not preco.empty and pd.notnull(preco.values[0]):
+                    valor = preco.values[0]
+                    linha[data] = valor
+                else:
+                    linha[data] = '-'
+            relatorio.append(linha)
 
-            self.df_comparado = pd.merge(
-                self.df_ontem,
-                self.df_hoje,
-                on="nome",
-                suffixes=("_ontem", "_hoje")
-            )
+        # Cria DataFrame final
+        colunas = ['nome'] + datas
+        df_final = pd.DataFrame(relatorio)[colunas]
+        return df_final
 
-            self.df_comparado["diferença"] = (
-                self.df_comparado["preco_hoje"] - self.df_comparado["preco_ontem"]
-            )
-
-            logger.info("Comparação realizada com sucesso.")
-            return self.df_comparado
-
-        except Exception as e:
-            logger.error(f"Erro ao fazer merge ou comparar dados: {e}")
-            raise
-
-    def gerar_relatorios(self) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-        """
-        Gera relatórios com os produtos que aumentaram, diminuíram e uma visão geral.
-
-        Returns:
-            tuple: (geral, aumentaram, diminuíram)
-        """
-        try:
-            self.df_geral = self.df_comparado.sort_values(by="diferença", ascending=False).reset_index(drop=True)
-            self.df_aumentaram = self.df_comparado[self.df_comparado["diferença"] > 0].reset_index(drop=True)
-            self.df_diminuiram = self.df_comparado[self.df_comparado["diferença"] < 0].reset_index(drop=True)
-
-            logger.info("Relatórios gerados com sucesso.")
-            return self.df_geral, self.df_aumentaram, self.df_diminuiram
-
-        except Exception as e:
-            logger.error(f"Erro ao gerar relatórios: {e}")
-            raise
 
     # função para gerar relatório geral de comparação
     def gerar_relatorio_comparacao_geral(self):

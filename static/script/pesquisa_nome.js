@@ -13,7 +13,9 @@ function pesquisarPorNome() {
     .then(data => {
         if (data.status === 'ok') {
             alert(data.mensagem);
-            // Aqui pode chamar uma função para atualizar o gráfico/tabela com os dados filtrados
+           
+        } else if (data.status === 'vazio') {
+            alert('Nenhum computador encontrado para o nome pesquisado.');
         } else {
             alert(data.mensagem);
         }

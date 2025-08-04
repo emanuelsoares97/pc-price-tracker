@@ -1,4 +1,3 @@
-# este ficheiro serve para correr o scraping e a comparação tudo de uma vez
 from scripts import scraper_main, comparador_main
 from utils.logger_util import get_logger
 

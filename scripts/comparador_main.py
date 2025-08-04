@@ -1,8 +1,8 @@
-# importo as bibliotecas que vou usar
+## importing the stuff I need
 import sys
 import os
 
-# adiciono o diretório raiz do projeto ao path
+## add the project root to the path, just in case
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from models.comparador import ComparadorPreco
@@ -15,31 +15,34 @@ from datetime import datetime
 
 logger = get_logger(__name__)
 
-# função principal para comparar preços
-def main():
-    # aqui vou buscar o csv mais recente
-    caminho_hoje = obter_csv_mais_recente('data/raw')
-    # aqui vou buscar o csv anterior
-    caminho_ontem = obter_csv_anteriores('data/raw', caminho_hoje)
+## main function to compare prices, does the heavy lifting
+def main(nome_pesquisa=None, n_dias=5):
+    ## pick the right folder, depends if searching by name or not
+    if nome_pesquisa:
+        pasta = 'data/raw/individual'
+    else:
+        pasta = 'data/raw/geral'
+    todos_ficheiros = [f for f in os.listdir(pasta) if f.endswith('.csv')]
+    todos_ficheiros.sort(reverse=True)
+    ## get the last n days for the report columns
+    ficheiros_ultimos = todos_ficheiros[:n_dias]
+    datas_ultimos = [f.split('_')[-1].replace('.csv','') for f in ficheiros_ultimos]
 
-    if not caminho_hoje or not caminho_ontem:
-        logger.warning('não há ficheiros suficientes para comparar preços')
-        return
+    ## read all the CSVs, just in case
+    todos_dfs = [pd.read_csv(os.path.join(pasta, f)) for f in todos_ficheiros]
+    dfs_ultimos = [pd.read_csv(os.path.join(pasta, f)) for f in ficheiros_ultimos]
 
-    # leio os ficheiros csv
-    df_hoje = pd.read_csv(caminho_hoje)
-    df_ontem = pd.read_csv(caminho_ontem)
+    ## call the comparador, let it do the magic
+    df_final = ComparadorPreco.comparar_multidias(dfs_ultimos, datas_ultimos, nome_pesquisa)
+    if nome_pesquisa:
+        ## clean up the name, no weird characters in the filename
+        nome_limpo = ''.join(c for c in nome_pesquisa if c.isalnum() or c in ('-', '_')).replace(' ', '_')
+        nome_saida = f"comparacao_multidias_{datas_ultimos[0]}_{nome_limpo}.csv"
+    else:
+        nome_saida = f"comparacao_multidias_{datas_ultimos[0]}.csv"
+    df_final.to_csv(os.path.join('data/reports', nome_saida), index=False)
+    logger.info(f'Relatório multidias gerado: {nome_saida}')
 
-    # crio o comparador de preços
-    comparador = ComparadorPreco(df_hoje, df_ontem)
-
-    # gero os relatórios
-    comparador.gerar_relatorio_comparacao_geral()
-    comparador.gerar_relatorio_precos_aumentaram()
-    comparador.gerar_relatorio_precos_diminuiram()
-
-    logger.info('relatórios gerados com sucesso')
-
-# se correr este ficheiro diretamente, chama a função main
+## if you run this file directly, just call main and let it roll
 if __name__ == "__main__":
     main()

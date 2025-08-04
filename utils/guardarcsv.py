@@ -12,5 +12,11 @@ def guardar_csv(df, nome, subpasta="raw"):
     if not os.path.exists(pasta):
         os.makedirs(pasta)
     # guarda o ficheiro csv
-    caminho = os.path.join(pasta, f"{nome}_{df['data'].iloc[0]}.csv")
+    if 'data' in df.columns and not df['data'].empty:
+        data_str = str(df['data'].iloc[0])
+    else:
+        # Usa a data atual se não houver coluna 'data'
+        data_str = datetime.now().strftime('%Y-%m-%d')
+        logger.warning("Coluna 'data' não encontrada no DataFrame. Usando data atual para nome do arquivo.")
+    caminho = os.path.join(pasta, f"{nome}_{data_str}.csv")
     df.to_csv(caminho, index=False)
