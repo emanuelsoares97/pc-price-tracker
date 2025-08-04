@@ -17,25 +17,29 @@ logger = get_logger(__name__)
 
 ## main function to compare prices, does the heavy lifting
 def main(nome_pesquisa=None, n_dias=5):
-    ## pick the right folder, depends if searching by name or not
+    """Função principal para comparar preços de computadores.
+    Se nome_pesquisa for fornecido, filtra os resultados pelo nome do computador.
+    n_dias define quantos dias de comparação serão feitos, padrão é 5."""
+
+    # pick the right folder, depends if searching by name or not
     if nome_pesquisa:
         pasta = 'data/raw/individual'
     else:
         pasta = 'data/raw/geral'
     todos_ficheiros = [f for f in os.listdir(pasta) if f.endswith('.csv')]
     todos_ficheiros.sort(reverse=True)
-    ## get the last n days for the report columns
+    # get the last n days for the report columns
     ficheiros_ultimos = todos_ficheiros[:n_dias]
     datas_ultimos = [f.split('_')[-1].replace('.csv','') for f in ficheiros_ultimos]
 
-    ## read all the CSVs, just in case
+    # read all the CSVs, just in case
     todos_dfs = [pd.read_csv(os.path.join(pasta, f)) for f in todos_ficheiros]
     dfs_ultimos = [pd.read_csv(os.path.join(pasta, f)) for f in ficheiros_ultimos]
 
-    ## call the comparador, let it do the magic
+    # call the comparador, let it do the magic
     df_final = ComparadorPreco.comparar_multidias(dfs_ultimos, datas_ultimos, nome_pesquisa)
     if nome_pesquisa:
-        ## clean up the name, no weird characters in the filename
+        # clean up the name, no weird characters in the filename
         nome_limpo = ''.join(c for c in nome_pesquisa if c.isalnum() or c in ('-', '_')).replace(' ', '_')
         nome_saida = f"comparacao_multidias_{datas_ultimos[0]}_{nome_limpo}.csv"
     else:
@@ -43,6 +47,6 @@ def main(nome_pesquisa=None, n_dias=5):
     df_final.to_csv(os.path.join('data/reports', nome_saida), index=False)
     logger.info(f'Relatório multidias gerado: {nome_saida}')
 
-## if you run this file directly, just call main and let it roll
+
 if __name__ == "__main__":
     main()

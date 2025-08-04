@@ -6,6 +6,9 @@ logger = get_logger(__name__)
 
 # classe para comparar preços entre dois dataframes
 class ComparadorPreco:
+    """Classe para comparar preços entre dois dataframes de computadores.
+    Recebe dois dataframes: um de hoje e outro de ontem.
+    Pode comparar preços de múltiplos dias, filtrando por nome do computador."""
     
     def __init__(self, df_hoje: pd.DataFrame, df_ontem: pd.DataFrame):
         # guardo os dataframes de hoje e de ontem
@@ -79,6 +82,7 @@ class ComparadorPreco:
 
     # função para gerar relatório geral de comparação
     def gerar_relatorio_comparacao_geral(self):
+        """Gera um relatório geral comparando os preços de hoje e ontem."""
         # aqui junto os dois dataframes pelo nome do produto
         df_merged = pd.merge(self.df_hoje, self.df_ontem, on='nome', suffixes=('_hoje', '_ontem'))
         # guardo o csv com a comparação geral
@@ -86,6 +90,7 @@ class ComparadorPreco:
 
     # função para gerar relatório de produtos que aumentaram de preço
     def gerar_relatorio_precos_aumentaram(self):
+        """Gera um relatório de produtos que aumentaram de preço comparando hoje e ontem."""
         # junto os dataframes e filtro os que aumentaram
         df_merged = pd.merge(self.df_hoje, self.df_ontem, on='nome', suffixes=('_hoje', '_ontem'))
         df_aumentaram = df_merged[df_merged['preco_hoje'] > df_merged['preco_ontem']]
@@ -94,6 +99,7 @@ class ComparadorPreco:
 
     # função para gerar relatório de produtos que diminuíram de preço
     def gerar_relatorio_precos_diminuiram(self):
+        """Gera um relatório de produtos que diminuíram de preço comparando hoje e ontem."""
         # junto os dataframes e filtro os que diminuíram
         df_merged = pd.merge(self.df_hoje, self.df_ontem, on='nome', suffixes=('_hoje', '_ontem'))
         df_diminuiram = df_merged[df_merged['preco_hoje'] < df_merged['preco_ontem']]

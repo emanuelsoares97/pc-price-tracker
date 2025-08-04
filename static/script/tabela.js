@@ -1,3 +1,4 @@
+
 // Gera tabela de comparação multidias simples (nome + datas)
 function gerarTabelaComparacaoMultidias(dados) {
     const tabela = document.getElementById('tabela-comparacao');

@@ -28,6 +28,8 @@ file_handler_debug.setFormatter(formatter)
 
 # função para criar um logger simples
 def get_logger(nome):
+    """    Cria um logger com o nome especificado.
+    Se já existir, retorna o logger existente"""
     logger = logging.getLogger(nome)
     if not logger.handlers:
         handler = logging.StreamHandler()
