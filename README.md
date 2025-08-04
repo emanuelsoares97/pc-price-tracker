@@ -2,27 +2,34 @@
 
 este projeto serve para acompanhar os preços de computadores gamer na globaldata.pt. faço scraping dos preços, guardo tudo em csv e depois comparo os preços de dias diferentes para ver o que subiu ou desceu. também tem uma interface web simples para veres os dados e fazer download dos ficheiros.
 
-
-## sumário
-
-
 ## sobre o projeto
 
-
+- O scraping só funciona localmente, pois o site bloqueia bots em modo headless (sem janela do navegador)
+- O deploy na cloud (Render, Railway etc.) é apenas para consulta dos dados
+- Para atualizar os dados na cloud, é necessário fazer scraping local e subir os novos ficheiros
 
 ## tecnologias usadas
-
+- Python 3.10+
+- Flask
+- Pandas
+- Selenium
+- BeautifulSoup
+- HTML/CSS/JavaScript
+- Docker
+- GitHub Actions
+- Pytest
 
 ## estrutura das pastas
 ```
 pc-price-tracker/
+├── .github/workflows      # Workflows CI (GitHub Actions)
 ├── data/
 │   ├── raw/
 │   │   ├── geral/         # todos os csvs gerais, um por dia
 │   │   ├── individual/    # csvs filtrados por nome (pesquisas)
 │   └── reports/           # relatórios das comparações, aumentos, quedas
 ├── models/                # lógica de comparação de preços
-├── notebooks/             # 
+├── notebooks/             # Análises manuais, testes exploratórios
 ├── scripts/               # scripts de scraping e comparação
 ├── utils/                 # funções auxiliares
 ├── static/
@@ -33,7 +40,7 @@ pc-price-tracker/
 ├── Dockerfile             # para deploy
 ├── requirements.txt       # dependências
 ├── app.py                 # app flask
-└── README.md              # este ficheiro
+└── README.md              
 
 
 ## como usar no pc
@@ -93,7 +100,3 @@ pytest tests/
 
 ## licença
 mit
-
----
-
-⚠️ atenção: o scraping só funciona localmente, porque o site bloqueia headless e a cloud só deixa correr assim. o deploy cloud é só para veres os dados e relatórios. se quiseres dados novos, faz scraping no pc e mete os csvs na pasta.

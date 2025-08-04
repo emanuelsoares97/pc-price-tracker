@@ -44,14 +44,29 @@ def job():
         alertas = []
 
         for idx, row in df.iterrows():
-            preco_hoje = row[data_hoje]
-            preco_ontem = row[data_ontem]
-            if pd.notna(preco_hoje) and pd.notna(preco_ontem):
-                diff = preco_ontem - preco_hoje
-                if diff >= 300:
-                    alertas.append((row['nome'], diff))
-                else:
-                    logger.info(f'Nenhuma diferença significativa para {row["nome"]}: {diff:.2f}€')
+            nome = row['nome']
+            precos = []
+
+            # Procurar preços válidos das datas ordenadas do mais recente para o mais antigo
+            for data in sorted(df.columns[1:], reverse=True):  # exclui 'nome'
+                val = row[data]
+                if pd.notna(val) and str(val) != '-' and val != '':
+                    precos.append(float(val))
+                if len(precos) == 2:
+                    break
+
+            if len(precos) < 2:
+                logger.info(f'Poucos dados disponíveis para {nome}, ignorando.')
+                continue
+
+            preco_mais_recente, preco_anterior = precos[0], precos[1]
+            diff = preco_anterior - preco_mais_recente  # diferença positiva se desceu
+
+            if diff >= 300:
+                alertas.append((nome, diff))
+            else:
+                logger.info(f'Nenhuma diferença significativa para {nome}: {diff:.2f}€')
+
 
 
         # Se achou algum alerta, envia um email único para todos
@@ -118,8 +133,10 @@ def send_alert_email_multiplos(alertas):
 schedule.every().day.at('09:00').do(job)
 
 if __name__ == '__main__':
-    logger.info('Scheduler de alertas ativo. Vai validar diferenças todos os dias às 9h.')
+    """logger.info('Scheduler de alertas ativo. Vai validar diferenças todos os dias às 9h.')
     while True:
         
         schedule.run_pending()
         time.sleep(60)
+"""
+    job()  # Para testes imediatos, chama o job diretamente
