@@ -74,7 +74,7 @@ docker run -p 10000:10000 pc-price-tracker
 ## exemplos de saída
 - csvs em `data/raw/` com os preços
 - relatórios em `data/reports/`:
-  - comparacao_geral_YYYY-MM-DD.csv
+  - comparacao_multidias_YYYY-MM-DD.csv
   - precos_aumentaram_YYYY-MM-DD.csv
   - precos_diminuiram_YYYY-MM-DD.csv
 - página web mostra tabela e gráfico
