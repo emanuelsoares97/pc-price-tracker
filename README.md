@@ -13,7 +13,6 @@ este projeto serve para acompanhar os preços de computadores gamer na globaldat
 - Flask
 - Pandas
 - Selenium
-- BeautifulSoup
 - HTML/CSS/JavaScript
 - Docker
 - GitHub Actions
