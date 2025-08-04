@@ -20,7 +20,10 @@ import shutil
 logger= get_logger(__name__)
 
 # função principal do scraping
-def main():
+def main(nome_pesquisa=None):
+    """ Função principal do scraper de computadores gamer.
+    Se nome_pesquisa for fornecido, filtra os resultados pelo nome do computador."""
+
     import shutil
     import tempfile
     import uuid
@@ -85,7 +88,7 @@ def main():
         try:
             linhas = produto.text.split("\n")
 
-            # procuro linha com a palavra "Computador"
+            
             nome = next((linha for linha in linhas if "Computador" in linha), None)
 
             # procuro última linha com "€"
@@ -100,13 +103,24 @@ def main():
 
             # se encontrar nome, preço e stock, guardo o produto
             if nome and preco_final and stock_final:
-                dados.append({
-                    "nome": nome,
-                    "preco": preco_final,
-                    "stock": stock_final,
-                    "data": datetime.today().strftime("%Y-%m-%d")
-                })
-                logger.info(f"dados recolhidos: {dados}")
+                # se nome_pesquisa foi passado, só adiciona se corresponder
+                if nome_pesquisa:
+                    if nome_pesquisa.lower() in nome.lower():
+                        dados.append({
+                            "nome": nome,
+                            "preco": preco_final,
+                            "stock": stock_final,
+                            "data": datetime.today().strftime("%Y-%m-%d")
+                        })
+                        logger.info(f"dados recolhidos: {dados}")
+                else:
+                    dados.append({
+                        "nome": nome,
+                        "preco": preco_final,
+                        "stock": stock_final,
+                        "data": datetime.today().strftime("%Y-%m-%d")
+                    })
+                    logger.info(f"dados recolhidos: {dados}")
 
         except Exception as e:
             logger.error("erro ao extrair produto:", e)
@@ -122,4 +136,8 @@ def main():
 
 # se correr este ficheiro diretamente, chama a função main
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser = argparse.ArgumentParser(description="Scraper de computadores")
+    parser.add_argument('--nome', type=str, help='Nome do computador para pesquisar', default=None)
+    args = parser.parse_args()
+    main(nome_pesquisa=args.nome)

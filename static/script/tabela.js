@@ -27,9 +27,24 @@ function carregarCSV() {
     const tbody = table.createTBody();
     const dados = [];
 
+    // Função para dividir linha CSV respeitando aspas
+    function splitCSVLine(line, delimiter) {
+      const regex = new RegExp(
+        `(?:"([^"]*)"|([^"${delimiter}]+))(?:${delimiter}|$)`,
+        'g'
+      );
+      const result = [];
+      let match;
+      while ((match = regex.exec(line)) !== null) {
+        // match[1] é o campo entre aspas, match[2] é o campo sem aspas
+        result.push(match[1] !== undefined ? match[1] : match[2]);
+      }
+      return result;
+    }
+
     // Processa cada linha (exceto a de cabeçalho)
     for (let i = 1; i < lines.length; i++) {
-      const row = lines[i].split(delimiter);
+      const row = splitCSVLine(lines[i], delimiter);
       const tr = tbody.insertRow();
 
       const indexDiff = headers.indexOf("diferença");

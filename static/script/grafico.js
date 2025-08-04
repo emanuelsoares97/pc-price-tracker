@@ -21,25 +21,27 @@ function atualizarGrafico(dados) {
     };
   
     const config = {
-      type: 'line',
+      type: 'bar', // Troca para barra para melhor visualização de ponto único
       data: data,
       options: {
         responsive: true,
         scales: {
-          x: { 
-            beginAtZero: true,
+          x: {
             ticks: {
               maxRotation: 90,
               minRotation: 45,
             },
           },
-          y: { 
-            beginAtZero: true 
+          y: {
+            // Ajusta os limites do eixo Y para incluir negativos e positivos
+            beginAtZero: false,
+            suggestedMin: Math.min(...diferencaValores, 0) - 50,
+            suggestedMax: Math.max(...diferencaValores, 0) + 50
           }
         }
       }
     };
-  
+
     chart = new Chart(ctx, config);
   }
   

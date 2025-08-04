@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, send_from_directory
+from flask import Flask, render_template, jsonify, send_from_directory, request
 import traceback
 from scripts import scraper_main, comparador_main
 from utils.logger_util import get_logger
@@ -24,6 +24,7 @@ def downloads():
     reports_files = sorted(os.listdir(reports_dir)) if os.path.exists(reports_dir) else []
     return render_template('downloads.html', raw_files=raw_files, reports_files=reports_files)
 
+
 # rota para fazer scraping e comparação quando carrego no botão
 @app.route('/scrap', methods=['POST'])
 def scrap():
@@ -35,6 +36,22 @@ def scrap():
         comparador_main.main()
         logger.info("finalizado com sucesso!")
         return jsonify({'status': 'ok', 'mensagem': 'scraping e comparação concluídos!'}), 200
+    except Exception as e:
+        logger.error(f"erro: {e}")
+        traceback.print_exc()
+        return jsonify({'status': 'erro', 'mensagem': str(e)}), 500
+
+# rota para scraping filtrando por nome do computador
+@app.route('/scrap_nome', methods=['POST'])
+def scrap_nome():
+    """Executa o scraping filtrando pelo nome do computador recebido via frontend."""
+    try:
+        data = request.get_json()
+        nome_pesquisa = data.get('nome', None)
+        logger.info(f"iniciando scraping via frontend para nome: {nome_pesquisa}")
+        scraper_main.main(nome_pesquisa=nome_pesquisa)
+        logger.info("finalizado com sucesso!")
+        return jsonify({'status': 'ok', 'mensagem': f'Scraping concluído para {nome_pesquisa}!'}), 200
     except Exception as e:
         logger.error(f"erro: {e}")
         traceback.print_exc()
