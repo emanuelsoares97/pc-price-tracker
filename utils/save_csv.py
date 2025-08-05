@@ -6,7 +6,7 @@ import pandas as pd
 logger= get_logger(__name__)
 
 
-def guardar_csv(df, nome, subpasta=None):
+def save_csv(df, nome, subpasta=None):
     """"Guarda um DataFrame como CSV na pasta especificada.
     Cria a pasta se não existir e usa a data do DataFrame ou a data atual"""
 

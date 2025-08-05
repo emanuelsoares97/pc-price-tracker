@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from models.comparador import ComparadorPreco
 from utils.csvrecente import obter_csv_mais_recente
 from utils.pastascsv import obter_csv_anteriores
-from utils.guardarcsv import guardar_csv
+from utils.save_csv import guardar_csv
 from utils.logger_util import get_logger
 import pandas as pd
 from datetime import datetime

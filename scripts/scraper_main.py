@@ -4,7 +4,7 @@ import os
 # adiciono o diretório raiz do projeto ao path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from utils.guardarcsv import guardar_csv
+from utils.save_csv import save_csv
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -138,10 +138,10 @@ def main(nome_pesquisa=None):
     # guarda o csv na pasta correta
     if nome_pesquisa:
         nome_limpo = ''.join(c for c in nome_pesquisa if c.isalnum() or c in ('-', '_')).replace(' ', '_')
-        guardar_csv(df, f"precos_computadores_{nome_limpo}", subpasta="raw/individual")
+        save_csv(df, f"precos_computadores_{nome_limpo}", subpasta="raw/individual")
     else:
-        guardar_csv(df, "precos_computadores", subpasta="raw/geral")
-    
+        save_csv(df, "precos_computadores", subpasta="raw/geral")
+
     # fecho o chrome
     driver.quit()
     return True

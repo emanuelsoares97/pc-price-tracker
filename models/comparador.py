@@ -57,7 +57,7 @@ class ComparadorPreco:
             termo = normalizar(nome_pesquisa)
             nomes_filtrados = {n for n in nomes if termo in normalizar(n)}
             if not nomes_filtrados:
-                raise ValueError(f"Nenhum computador encontrado com o termo '{nome_pesquisa}'.")
+                raise ValueError(f"Nenhum computador encontrado com o nome: '{nome_pesquisa}'.")
             nomes = nomes_filtrados
 
         # Monta tabela: cada linha um computador, cada coluna um preço por data
