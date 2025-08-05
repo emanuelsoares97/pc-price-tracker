@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from models.comparador import ComparadorPreco
 from utils.csvrecente import obter_csv_mais_recente
 from utils.pastascsv import obter_csv_anteriores
-from utils.save_csv import guardar_csv
+from utils.save_csv import save_csv
 from utils.logger_util import get_logger
 import pandas as pd
 from datetime import datetime
@@ -44,7 +44,9 @@ def main(nome_pesquisa=None, n_dias=5):
         nome_saida = f"comparacao_multidias_{datas_ultimos[0]}_{nome_limpo}.csv"
     else:
         nome_saida = f"comparacao_multidias_{datas_ultimos[0]}.csv"
+        
     df_final.to_csv(os.path.join('data/reports', nome_saida), index=False)
+
     logger.info(f'Relatório multidias gerado: {nome_saida}')
 
 
